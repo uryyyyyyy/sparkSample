@@ -1,21 +1,18 @@
-package com.github.uryyyyyyy.hadoop.spark.batch.helloworld
+package com.github.uryyyyyyy.spark.batch.helloworld
 
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Hello3 {
+object Hello {
   def main(args: Array[String]): Unit = {
 
     val conf = new SparkConf().setAppName("Simple Application")
     val sc = new SparkContext(conf)
-    val rdd = sc.textFile("s3://opt-uryyyyyyy/spark/data/hello", 10)
+    val rdd = sc.range(0, 100, 1, 10)
     println("----Start----")
-
-    //1st
-    rdd.map(i => i.toInt * 2)
-      .foreach(i => println(i))
-
-    //2nd
-    rdd.map(i => i.toInt * 3)
+    rdd.mapPartitionsWithIndex((i, itr) => {
+      println(itr.size)
+      itr
+    }).map(i => i*2)
       .foreach(i => println(i))
   }
 }

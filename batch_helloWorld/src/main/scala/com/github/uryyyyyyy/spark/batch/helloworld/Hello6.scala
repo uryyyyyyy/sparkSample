@@ -1,8 +1,8 @@
-package com.github.uryyyyyyy.hadoop.spark.batch.helloworld
+package com.github.uryyyyyyy.spark.batch.helloworld
 
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Hello8 {
+object Hello6 {
   def main(args: Array[String]): Unit = {
 
     val conf = new SparkConf().setAppName("Simple Application")
@@ -11,10 +11,7 @@ object Hello8 {
     println("----Start----")
 
     rdd.map(str => str.toInt).map(i => (i%20, i))
-      .reduceByKey((acc, i) => acc + 1)
-      .foreach{case (key, value) =>
-        if (key == 10) throw new RuntimeException
-        println(s"key: ${key}, value:${value}")
-      }
+      .groupByKey(20).map{case (key, itr) => (key, itr.size)}
+      .foreach{case (key, value) => println(s"key: ${key}, value:${value}")}
   }
 }

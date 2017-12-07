@@ -15,7 +15,7 @@ val commonSettings = Seq(
 lazy val batch_helloWorld = (project in file("batch_helloWorld"))
   .settings(commonSettings: _*)
   .settings(
-    name := "batch_helloworld"
+    name := "batch_helloWorld"
   )
 
 lazy val batch_multi_thread_pool = (project in file("batch_multi_thread_pool"))
