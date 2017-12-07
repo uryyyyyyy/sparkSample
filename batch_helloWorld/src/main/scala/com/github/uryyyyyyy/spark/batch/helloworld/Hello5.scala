@@ -1,9 +1,9 @@
-package com.github.uryyyyyyy.hadoop.spark.batch.helloworld
+package com.github.uryyyyyyy.spark.batch.helloworld
 
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.{SparkConf, SparkContext}
 
-object Hello4 {
+object Hello5 {
   def main(args: Array[String]): Unit = {
 
     val conf = new SparkConf().setAppName("Simple Application")
@@ -18,7 +18,10 @@ object Hello4 {
       .foreach(i => println(i))
 
     //2nd
-    rdd.map(i => i.toInt * 3)
+    rdd.map{i =>
+      Thread.sleep(10)
+      i.toInt * 3
+    }
       .foreach(i => println(i))
   }
 }
