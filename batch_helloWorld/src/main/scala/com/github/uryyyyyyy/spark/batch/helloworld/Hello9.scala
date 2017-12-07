@@ -1,4 +1,4 @@
-package com.github.uryyyyyyy.hadoop.spark.batch.helloworld
+package com.github.uryyyyyyy.spark.batch.helloworld
 
 import org.apache.spark.{SparkConf, SparkContext}
 
