@@ -9,10 +9,7 @@ object Hello {
     val sc = new SparkContext(conf)
     val rdd = sc.range(0, 100, 1, 10)
     println("----Start----")
-    rdd.mapPartitionsWithIndex((i, itr) => {
-      println(itr.size)
-      itr
-    }).map(i => i*2)
+    rdd.map(i => i*2)
       .foreach(i => println(i))
   }
 }
